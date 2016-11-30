@@ -1,0 +1,19 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+input{
+	padding: 5px;
+	border-radius: 2px;
+	display: inline-block;
+
+	
+}
+form{
+	max-width: 400px;
+	margin: 0 auto;
+}
+.trip_input{
+	width: 100%;
+	background-color: grey;
+}
