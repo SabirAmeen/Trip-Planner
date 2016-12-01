@@ -3,6 +3,10 @@ import $ from 'jquery';
 import ListContent from './list_content.jsx';
 export default class extends React.Component{
 
+change(event){
+	console.log(this)
+}
+
 generateLayout(){
 	var arr=this.props.data.loc;
 	var i=0;
@@ -11,11 +15,11 @@ generateLayout(){
 			i++;
 			return(<div key={index}>
 					<input placeholder={i}/>
-					<input placeholder={item.origin}/>
-					<input placeholder={item.dest}/>
+					<input placeholder={item.origin} onChange={this.change.bind(this)}/>
+					<input placeholder={item.dest} onChange={this.change.bind(this)}/>
 					</div>
 			);
-		})
+		}.bind(this))
 	)
 }
 render(){

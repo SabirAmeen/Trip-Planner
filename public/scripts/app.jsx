@@ -21,7 +21,12 @@ input(arr){
 	var loc=[];
 	for(var i=0;i < stopCount;i++){
 		if(i==0){
-			loc.push({origin:arr[0], dest:""})
+			if(stopCount==1){
+				loc.push({origin:arr[0], dest:arr[1]})
+			}
+			else{
+				loc.push({origin:arr[0], dest:""})		
+			}
 		}
 		else if(i==stopCount-1){
 			loc.push({origin:"", dest:arr[1]})

@@ -97,7 +97,11 @@
 				var loc = [];
 				for (var i = 0; i < stopCount; i++) {
 					if (i == 0) {
-						loc.push({ origin: arr[0], dest: "" });
+						if (stopCount == 1) {
+							loc.push({ origin: arr[0], dest: arr[1] });
+						} else {
+							loc.push({ origin: arr[0], dest: "" });
+						}
 					} else if (i == stopCount - 1) {
 						loc.push({ origin: "", dest: arr[1] });
 					} else {
@@ -21671,6 +21675,11 @@
 		}
 
 		_createClass(_class, [{
+			key: 'change',
+			value: function change(event) {
+				console.log(this);
+			}
+		}, {
 			key: 'generateLayout',
 			value: function generateLayout() {
 				var arr = this.props.data.loc;
@@ -21681,10 +21690,10 @@
 						'div',
 						{ key: index },
 						_react2.default.createElement('input', { placeholder: i }),
-						_react2.default.createElement('input', { placeholder: item.origin }),
-						_react2.default.createElement('input', { placeholder: item.dest })
+						_react2.default.createElement('input', { placeholder: item.origin, onChange: this.change.bind(this) }),
+						_react2.default.createElement('input', { placeholder: item.dest, onChange: this.change.bind(this) })
 					);
-				});
+				}.bind(this));
 			}
 		}, {
 			key: 'render',
