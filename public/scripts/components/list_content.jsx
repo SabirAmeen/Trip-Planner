@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jQuery';
+import $ from 'jquery';
 
 export default class extends React.Component{
 	render(){
