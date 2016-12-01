@@ -6,7 +6,6 @@ export default class TripInput extends React.Component {
 		this.from=undefined;
 		this.to=undefined;
 		this.stop=undefined;
-
 	}
 	enter(){
 		var list=[];
