@@ -2,32 +2,45 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import TripInput from './tripInput.jsx';
-import TripTable from './tripTable.jsx';
-import TripListItem from './tripListItem.jsx';
+
+import ListWrapper from './components/list_wrapper.jsx';
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { from: [], to: [], stop: ''}
-    }
+constructor(props){
+	super(props);
+	this.state = {
+		from:"TVM",
+		to:"Manali",
+		stops:"1",
+		loc:[	
+		]
+	}
+}
+input(arr){
+	this.setState({loc:[]});
+	var loc={origin:arr[0], dest:arr[1]}
+	this.setState({
+		from:arr[0],
+		to:arr[1],
+		stops:arr[2],
+		loc:[loc]
+	})
+console.log(this.state.loc);
+}
+
+
 	render() {
 		return(
 			<div className="trip_input">
-					<TripInput onUpdate={this.onUpdate.bind(this)}/>
-                    <TripTable from={this.state.from} to={this.state.to} stop={this.state.stop} />
+					<TripInput input={this.input.bind(this)}/>
+					<ListWrapper data={this.state}/>
 			</div>
 
 			)
 	}
     onUpdate(val) {
-        var arr = this.state.from.slice();
-            arr.push(val.from)
-        this.setState({
-            from: arr,
-            to: val.to,
-            stop: val.stop
-        });
-    }
+    
+};
 };
 
  ReactDOM.render(<App/>, document.getElementById('app'));
@@ -36,43 +49,4 @@ class App extends React.Component {
 
 
 
-  //   class  TripPlanner extends React.Component{
-  //       constructor(props) {
-  //           super(props);
-  //           this.state = {items: ['one', 'two']};
-  //       }
-       
-
-  //       render(){
-  //           return (
-  //               <div>
-  //               <TodoList items={this.state.items} />
-  //               </div>
-  //               );
-  //       }
-  //   };
-
-  //   class TodoList extends React.Component {
-  //       render() {
-  //           var createItem = function(itemText) {
-  //               return (
-  //                   <TodoListItem> {itemText}</TodoListItem>
-  //                   );
-  //           };
-  //           return <ul>{this.props.items.map(createItem)}</ul>;
-  //       }
-  //   };
-
-  //   class TodoListItem extends React.Component {
-  //       render() {
-  //           return (
-  //               <li>{this.props.children} </li>
-  //               )
-  //       }
-  //   };
   
-  // ReactDOM.render(<TripPlanner/>, document.getElementById('app'));
-
-
-
-    
