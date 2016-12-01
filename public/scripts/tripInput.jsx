@@ -15,28 +15,19 @@ export default class TripInput extends React.Component {
 	render() {
 		return (
 
-			<div>
-				<label>From:</label>
-				<input type="text" name="from" ref={from => this.from = from}/>
-				<label> To: </label>
-				<input type="text" name="to" ref={to => this.to = to}/>
-				<label>Stop: </label>
-				<input type="text" name="stop" ref={stop => this.stop = stop}/>
-				<button width="50px" height="50px" onClick={this.enter.bind(this)}>submit</button>
+			<div className="trip_input">
+				<h2>Plan Your Journey </h2>
+				
+				<input type="text" name="from" ref={from => this.from = from} placeholder="From"/>
+			
+				<input type="text" name="to" ref={to => this.to = to} placeholder="To"/>
+			
+				<input type="text" name="stop" ref={stop => this.stop = stop} placeholder="Stops"/>
+				<button width="50px" height="50px" onClick={this.enter.bind(this)}>LET'S GO</button>
 			</div>
 
-			)
+		)
 	}
-
-	update() {
-			var values = {
-				"from" : this.refs.from.value,
-				"to" : this.refs.to.value,
-				"stop" : this.refs.stop.value
-			}
-         this.props.onUpdate(values);
-         this.refs.form.reset();
-     }
 
 };
 

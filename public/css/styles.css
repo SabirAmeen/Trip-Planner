@@ -1,7 +1,13 @@
 *{
 	margin: 0;
 	padding: 0;
-	fo
+	box-sizing: border-box;
+}
+body{
+	background-color: #dee1e5;
+}
+h1,h2,h3{
+	text-align: center;
 }
 header{
 	background-color: #0f4159;
@@ -10,9 +16,107 @@ header{
 }
 h1{
 	color: #fff;
-	text-align: center;
 	line-height: 60px;
 }
+h2{
+	color: #485494;
+}
 footer{
+	
+}
+.trip_planner{
+	width: 80%;
+	margin: 100px auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 5px 5px 2px  #888888;
+}
+.trip_input{
+	position: relative;
+	top: 20px;
+}
+.trip_input input {
+	width: 90%;
+	max-width: 400px;
+	padding: 10px;
+	display: block;
+	margin: 20px auto;
+	border-radius: 3px;
+	border: 1px solid #dee1e5;
+}
+.trip_input button {
+	background-color: #ff8a00;
+	color: #fff;
+	width: 150px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	display: block;
+	margin: 0 auto;
+	border: none;
+}
+.list_wrapper{
+	margin: 50px auto;
+}
+.list_wrapper .section_heading{
+	text-align: center;
+}
+.list_wrapper .heading {
+	display: inline-block;
+	width: 40%;
+	background-color: #c4d2e3;
+	color: #475c76;
+	padding: 5px;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+	margin: 2px;
+}
+.list_wrapper .heading:first-child {
+	width: 8%;
+	min-width: 50px;
+}
+
+
+.list_item {
+	margin: 10px auto;
+	width: 100%;
+	padding: 15px 0;
+	text-align: center;
+}
+
+.list_item input {
+	width: 40%;
+	padding: 10px;
+	margin:5px;
+	height: 30px;
+
+}
+.list_item input:last-child{
+	margin-right: 0;
+}
+.add_remove_stop{
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	border: none;
+	color: #fff;
+	padding: 2px;
+	float: left;
+	margin-top: 5px;
+}
+.add_stop {
+	background-color: #0d860e;
+}
+.remove_stop {
+	background-color: #e48a37;
+}
+footer{
+background-color: #000;
+height: 40px;
+}
+
+@media (min-width: ) {
 	
 }

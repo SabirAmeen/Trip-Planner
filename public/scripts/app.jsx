@@ -42,16 +42,13 @@ input(arr){
 
 	render() {
 		return(
-			<div className="trip_input">
+			<div className="trip_planner">
 					<TripInput input={this.input.bind(this)}/>
 					<ListWrapper data={this.state}/>
 			</div>
 
 			)
 	}
-    onUpdate(val) {
-    
-};
 };
 
  ReactDOM.render(<App/>, document.getElementById('app'));

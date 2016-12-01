@@ -9,21 +9,28 @@ generateLayout(){
 	return(
 		arr.map(function(item,index){
 			i++;
-			return(<div key={index}>
-					<input placeholder={i}/>
-					<input placeholder={item.origin}/>
+			return(<div key={index} className="list_item">
+				
+					<span>{i} </span>
+					<input placeholder={item.origin} />
 					<input placeholder={item.dest}/>
 					</div>
 			);
 		})
 	)
 }
+onChange() {
+	this.setState()
+}
+
 render(){
 	return(
 			<div className="list_wrapper">
-				<h3>Stops</h3>
-				<h3>From</h3>
-				<h3>To</h3>
+				<div className="section_heading">
+					<span className="heading">Stops</span>
+					<span className="heading">From</span>
+					<span className="heading">To</span>
+				</div>
 				{this.generateLayout()}
 			</div>
 		)

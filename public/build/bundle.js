@@ -116,14 +116,11 @@
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					{ className: 'trip_input' },
+					{ className: 'trip_planner' },
 					_react2.default.createElement(_tripInput2.default, { input: this.input.bind(this) }),
 					_react2.default.createElement(_list_wrapper2.default, { data: this.state })
 				);
 			}
-		}, {
-			key: 'onUpdate',
-			value: function onUpdate(val) {}
 		}]);
 
 		return App;
@@ -21590,12 +21587,22 @@
 					i++;
 					return _react2.default.createElement(
 						'div',
-						{ key: index },
-						_react2.default.createElement('input', { placeholder: i }),
+						{ key: index, className: 'list_item' },
+						_react2.default.createElement(
+							'span',
+							null,
+							i,
+							' '
+						),
 						_react2.default.createElement('input', { placeholder: item.origin }),
 						_react2.default.createElement('input', { placeholder: item.dest })
 					);
 				});
+			}
+		}, {
+			key: 'onChange',
+			value: function onChange() {
+				this.setState();
 			}
 		}, {
 			key: 'render',
@@ -21604,19 +21611,23 @@
 					'div',
 					{ className: 'list_wrapper' },
 					_react2.default.createElement(
-						'h3',
-						null,
-						'Stops'
-					),
-					_react2.default.createElement(
-						'h3',
-						null,
-						'From'
-					),
-					_react2.default.createElement(
-						'h3',
-						null,
-						'To'
+						'div',
+						{ className: 'section_heading' },
+						_react2.default.createElement(
+							'span',
+							{ className: 'heading' },
+							'Stops'
+						),
+						_react2.default.createElement(
+							'span',
+							{ className: 'heading' },
+							'From'
+						),
+						_react2.default.createElement(
+							'span',
+							{ className: 'heading' },
+							'To'
+						)
 					),
 					this.generateLayout()
 				);
@@ -31961,48 +31972,27 @@
 
 				return _react2.default.createElement(
 					"div",
-					null,
+					{ className: "trip_input" },
 					_react2.default.createElement(
-						"label",
+						"h2",
 						null,
-						"From:"
+						"Plan Your Journey "
 					),
 					_react2.default.createElement("input", { type: "text", name: "from", ref: function ref(from) {
 							return _this2.from = from;
-						} }),
-					_react2.default.createElement(
-						"label",
-						null,
-						" To: "
-					),
+						}, placeholder: "From" }),
 					_react2.default.createElement("input", { type: "text", name: "to", ref: function ref(to) {
 							return _this2.to = to;
-						} }),
-					_react2.default.createElement(
-						"label",
-						null,
-						"Stop: "
-					),
+						}, placeholder: "To" }),
 					_react2.default.createElement("input", { type: "text", name: "stop", ref: function ref(stop) {
 							return _this2.stop = stop;
-						} }),
+						}, placeholder: "Stops" }),
 					_react2.default.createElement(
 						"button",
 						{ width: "50px", height: "50px", onClick: this.enter.bind(this) },
-						"submit"
+						"LET'S GO"
 					)
 				);
-			}
-		}, {
-			key: "update",
-			value: function update() {
-				var values = {
-					"from": this.refs.from.value,
-					"to": this.refs.to.value,
-					"stop": this.refs.stop.value
-				};
-				this.props.onUpdate(values);
-				this.refs.form.reset();
 			}
 		}]);
 
