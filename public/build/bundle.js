@@ -56,11 +56,11 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _tripInput = __webpack_require__(181);
+	var _tripInput = __webpack_require__(178);
 
 	var _tripInput2 = _interopRequireDefault(_tripInput);
 
-	var _list_wrapper = __webpack_require__(178);
+	var _list_wrapper = __webpack_require__(179);
 
 	var _list_wrapper2 = _interopRequireDefault(_list_wrapper);
 
@@ -81,9 +81,7 @@
 			var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
 			_this.state = {
-				from: "TVM",
-				to: "Manali",
-				stops: "1",
+				stops: 1,
 				loc: []
 			};
 			return _this;
@@ -97,7 +95,11 @@
 				var loc = [];
 				for (var i = 0; i < stopCount; i++) {
 					if (i == 0) {
-						loc.push({ origin: arr[0], dest: "" });
+						if (stopCount == 1) {
+							loc.push({ origin: arr[0], dest: arr[1] });
+						} else {
+							loc.push({ origin: arr[0], dest: "" });
+						}
 					} else if (i == stopCount - 1) {
 						loc.push({ origin: "", dest: arr[1] });
 					} else {
@@ -105,11 +107,22 @@
 					}
 				}
 				this.setState({
-					from: arr[0],
-					to: arr[1],
 					stops: arr[2],
 					loc: loc
 				});
+			}
+		}, {
+			key: 'handleChange',
+			value: function handleChange(row, place, type) {
+				var arr = this.state.loc;
+				if (type == "origin") {
+					arr[row].origin = place;
+					arr[row - 1].dest = place;
+				} else {
+					arr[row].dest = place;
+					arr[row + 1].origin = place;
+				}
+				this.setState({ loc: arr });
 			}
 		}, {
 			key: 'render',
@@ -118,7 +131,7 @@
 					'div',
 					{ className: 'trip_planner' },
 					_react2.default.createElement(_tripInput2.default, { input: this.input.bind(this) }),
-					_react2.default.createElement(_list_wrapper2.default, { data: this.state })
+					_react2.default.createElement(_list_wrapper2.default, { data: this.state, handleChange: this.handleChange.bind(this) })
 				);
 			}
 		}]);
@@ -21541,6 +21554,88 @@
 /* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var TripInput = function (_React$Component) {
+		_inherits(TripInput, _React$Component);
+
+		function TripInput(props) {
+			_classCallCheck(this, TripInput);
+
+			var _this = _possibleConstructorReturn(this, (TripInput.__proto__ || Object.getPrototypeOf(TripInput)).call(this, props));
+
+			_this.from = undefined;
+			_this.to = undefined;
+			_this.stop = undefined;
+			return _this;
+		}
+
+		_createClass(TripInput, [{
+			key: "enter",
+			value: function enter() {
+				var list = [];
+				list.push(this.from.value, this.to.value, this.stop.value);
+				this.props.input(list);
+			}
+		}, {
+			key: "render",
+			value: function render() {
+				var _this2 = this;
+
+				return _react2.default.createElement(
+					"div",
+					{ className: "trip_input" },
+					_react2.default.createElement(
+						"h2",
+						null,
+						"Plan Your Journey "
+					),
+					_react2.default.createElement("input", { type: "text", name: "from", ref: function ref(from) {
+							return _this2.from = from;
+						}, placeholder: "From" }),
+					_react2.default.createElement("input", { type: "text", name: "to", ref: function ref(to) {
+							return _this2.to = to;
+						}, placeholder: "To" }),
+					_react2.default.createElement("input", { type: "text", name: "stop", ref: function ref(stop) {
+							return _this2.stop = stop;
+						}, placeholder: "Stops" }),
+					_react2.default.createElement(
+						"button",
+						{ width: "50px", height: "50px", onClick: this.enter.bind(this) },
+						"LET'S GO"
+					)
+				);
+			}
+		}]);
+
+		return TripInput;
+	}(_react2.default.Component);
+
+	exports.default = TripInput;
+	;
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -21553,11 +21648,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(179);
+	var _jquery = __webpack_require__(180);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _list_content = __webpack_require__(180);
+	var _list_content = __webpack_require__(181);
 
 	var _list_content2 = _interopRequireDefault(_list_content);
 
@@ -21579,25 +21674,40 @@
 		}
 
 		_createClass(_class, [{
+			key: 'change',
+			value: function change(row, evt) {
+				this.props.handleChange(row, evt.target.value, evt.target.className);
+			}
+		}, {
 			key: 'generateLayout',
 			value: function generateLayout() {
 				var arr = this.props.data.loc;
 				var i = 0;
 				return arr.map(function (item, index) {
+					var _this2 = this;
+
 					i++;
+
 					return _react2.default.createElement(
 						'div',
 						{ key: index, className: 'list_item' },
 						_react2.default.createElement(
 							'span',
-							null,
-							i,
-							' '
+							{ id: "stop-" + i },
+							i
 						),
-						_react2.default.createElement('input', { placeholder: item.origin }),
-						_react2.default.createElement('input', { placeholder: item.dest })
+						_react2.default.createElement('input', { className: 'origin', id: "origin-" + i, ref: function ref(origin) {
+								return _this2.origin = origin;
+							}, value: item.origin, onChange: function onChange(evt) {
+								return _this2.change(index, evt);
+							} }),
+						_react2.default.createElement('input', { className: 'dest', id: "dest-" + i, ref: function ref(dest) {
+								return _this2.dest = dest;
+							}, value: item.dest, onChange: function onChange(evt) {
+								return _this2.change(index, evt);
+							} })
 					);
-				});
+				}.bind(this));
 			}
 		}, {
 			key: 'onChange',
@@ -21640,7 +21750,7 @@
 	exports.default = _class;
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -31866,7 +31976,7 @@
 
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31881,7 +31991,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(179);
+	var _jquery = __webpack_require__(180);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -31919,88 +32029,6 @@
 	}(_react2.default.Component);
 
 	exports.default = _class;
-
-/***/ },
-/* 181 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var TripInput = function (_React$Component) {
-		_inherits(TripInput, _React$Component);
-
-		function TripInput(props) {
-			_classCallCheck(this, TripInput);
-
-			var _this = _possibleConstructorReturn(this, (TripInput.__proto__ || Object.getPrototypeOf(TripInput)).call(this, props));
-
-			_this.from = undefined;
-			_this.to = undefined;
-			_this.stop = undefined;
-			return _this;
-		}
-
-		_createClass(TripInput, [{
-			key: "enter",
-			value: function enter() {
-				var list = [];
-				list.push(this.from.value, this.to.value, this.stop.value);
-				this.props.input(list);
-			}
-		}, {
-			key: "render",
-			value: function render() {
-				var _this2 = this;
-
-				return _react2.default.createElement(
-					"div",
-					{ className: "trip_input" },
-					_react2.default.createElement(
-						"h2",
-						null,
-						"Plan Your Journey "
-					),
-					_react2.default.createElement("input", { type: "text", name: "from", ref: function ref(from) {
-							return _this2.from = from;
-						}, placeholder: "From" }),
-					_react2.default.createElement("input", { type: "text", name: "to", ref: function ref(to) {
-							return _this2.to = to;
-						}, placeholder: "To" }),
-					_react2.default.createElement("input", { type: "text", name: "stop", ref: function ref(stop) {
-							return _this2.stop = stop;
-						}, placeholder: "Stops" }),
-					_react2.default.createElement(
-						"button",
-						{ width: "50px", height: "50px", onClick: this.enter.bind(this) },
-						"LET'S GO"
-					)
-				);
-			}
-		}]);
-
-		return TripInput;
-	}(_react2.default.Component);
-
-	exports.default = TripInput;
-	;
 
 /***/ }
 /******/ ]);
