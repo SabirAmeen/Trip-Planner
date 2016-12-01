@@ -60,6 +60,14 @@
 
 	var _tripInput2 = _interopRequireDefault(_tripInput);
 
+	var _tripTable = __webpack_require__(179);
+
+	var _tripTable2 = _interopRequireDefault(_tripTable);
+
+	var _tripListItem = __webpack_require__(180);
+
+	var _tripListItem2 = _interopRequireDefault(_tripListItem);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -69,31 +77,83 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var App = function (_React$Component) {
-		_inherits(App, _React$Component);
+	    _inherits(App, _React$Component);
 
-		function App() {
-			_classCallCheck(this, App);
+	    function App(props) {
+	        _classCallCheck(this, App);
 
-			return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-		}
+	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-		_createClass(App, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					{ className: 'trip_input' },
-					_react2.default.createElement(_tripInput2.default, null)
-				);
-			}
-		}]);
+	        _this.state = { from: [], to: [], stop: '' };
+	        return _this;
+	    }
 
-		return App;
+	    _createClass(App, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'trip_input' },
+	                _react2.default.createElement(_tripInput2.default, { onUpdate: this.onUpdate.bind(this) }),
+	                _react2.default.createElement(_tripTable2.default, { from: this.state.from, to: this.state.to, stop: this.state.stop })
+	            );
+	        }
+	    }, {
+	        key: 'onUpdate',
+	        value: function onUpdate(val) {
+	            var arr = this.state.from.slice();
+	            arr.push(val.from);
+	            this.setState({
+	                from: arr,
+	                to: val.to,
+	                stop: val.stop
+	            });
+	        }
+	    }]);
+
+	    return App;
 	}(_react2.default.Component);
 
 	;
 
 	_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('app'));
+
+	//   class  TripPlanner extends React.Component{
+	//       constructor(props) {
+	//           super(props);
+	//           this.state = {items: ['one', 'two']};
+	//       }
+
+
+	//       render(){
+	//           return (
+	//               <div>
+	//               <TodoList items={this.state.items} />
+	//               </div>
+	//               );
+	//       }
+	//   };
+
+	//   class TodoList extends React.Component {
+	//       render() {
+	//           var createItem = function(itemText) {
+	//               return (
+	//                   <TodoListItem> {itemText}</TodoListItem>
+	//                   );
+	//           };
+	//           return <ul>{this.props.items.map(createItem)}</ul>;
+	//       }
+	//   };
+
+	//   class TodoListItem extends React.Component {
+	//       render() {
+	//           return (
+	//               <li>{this.props.children} </li>
+	//               )
+	//       }
+	//   };
+
+	// ReactDOM.render(<TripPlanner/>, document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -21540,26 +21600,38 @@
 			value: function render() {
 				return _react2.default.createElement(
 					"form",
-					null,
+					{ ref: "form" },
 					_react2.default.createElement(
 						"label",
 						null,
 						"From:"
 					),
-					_react2.default.createElement("input", { type: "text", name: "from" }),
+					_react2.default.createElement("input", { type: "text", name: "from", ref: "from" }),
 					_react2.default.createElement(
 						"label",
 						null,
 						" To: "
 					),
-					_react2.default.createElement("input", { type: "text", name: "to" }),
+					_react2.default.createElement("input", { type: "text", name: "to", ref: "to" }),
 					_react2.default.createElement(
 						"label",
 						null,
 						"Stop: "
 					),
-					_react2.default.createElement("input", { type: "text", name: "stop" })
+					_react2.default.createElement("input", { type: "text", name: "stop", ref: "stop" }),
+					_react2.default.createElement("input", { type: "button", onClick: this.update.bind(this), value: "ADD" })
 				);
+			}
+		}, {
+			key: "update",
+			value: function update() {
+				var values = {
+					"from": this.refs.from.value,
+					"to": this.refs.to.value,
+					"stop": this.refs.stop.value
+				};
+				this.props.onUpdate(values);
+				this.refs.form.reset();
 			}
 		}]);
 
@@ -21567,6 +21639,117 @@
 	}(_react2.default.Component);
 
 	exports.default = TripInput;
+	;
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var TripTable = function (_React$Component) {
+	    _inherits(TripTable, _React$Component);
+
+	    function TripTable() {
+	        _classCallCheck(this, TripTable);
+
+	        return _possibleConstructorReturn(this, (TripTable.__proto__ || Object.getPrototypeOf(TripTable)).apply(this, arguments));
+	    }
+
+	    _createClass(TripTable, [{
+	        key: 'render',
+	        value: function render() {
+	            var createItem = function createItem(item) {
+	                return _react2.default.createElement(
+	                    TripListItem,
+	                    null,
+	                    item
+	                );
+	            };
+	            return _react2.default.createElement(
+	                'ul',
+	                null,
+	                this.props.from.map(createItem)
+	            );
+	        }
+	    }]);
+
+	    return TripTable;
+	}(_react2.default.Component);
+
+	exports.default = TripTable;
+	;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var TripListItem = function (_React$Component) {
+		_inherits(TripListItem, _React$Component);
+
+		function TripListItem() {
+			_classCallCheck(this, TripListItem);
+
+			return _possibleConstructorReturn(this, (TripListItem.__proto__ || Object.getPrototypeOf(TripListItem)).apply(this, arguments));
+		}
+
+		_createClass(TripListItem, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'tr',
+					null,
+					_react2.default.createElement(
+						'td',
+						null,
+						this.props.children
+					)
+				);
+			}
+		}]);
+
+		return TripListItem;
+	}(_react2.default.Component);
+
+	exports.default = TripListItem;
 	;
 
 /***/ }
