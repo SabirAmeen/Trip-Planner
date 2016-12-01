@@ -93,14 +93,23 @@
 			key: 'input',
 			value: function input(arr) {
 				this.setState({ loc: [] });
-				var loc = { origin: arr[0], dest: arr[1] };
+				var stopCount = arr[2];
+				var loc = [];
+				for (var i = 0; i < stopCount; i++) {
+					if (i == 0) {
+						loc.push({ origin: arr[0], dest: "" });
+					} else if (i == stopCount - 1) {
+						loc.push({ origin: "", dest: arr[1] });
+					} else {
+						loc.push({ origin: "", dest: "" });
+					}
+				}
 				this.setState({
 					from: arr[0],
 					to: arr[1],
 					stops: arr[2],
-					loc: [loc]
+					loc: loc
 				});
-				console.log(this.state.loc);
 			}
 		}, {
 			key: 'render',
@@ -21563,7 +21572,6 @@
 			_this.from = undefined;
 			_this.to = undefined;
 			_this.stop = undefined;
-
 			return _this;
 		}
 
