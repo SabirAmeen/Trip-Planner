@@ -3,8 +3,11 @@ import $ from 'jquery';
 import ListContent from './list_content.jsx';
 export default class extends React.Component{
 
-change(event){
-	console.log(this)
+change(row,evt){
+	this.props.handleChange(row,evt.target.value,evt.target.className)
+	// console.log(++row)
+	// console.log(evt.target.value)
+	// console.log(evt.target.className)
 }
 
 generateLayout(){
@@ -14,9 +17,9 @@ generateLayout(){
 		arr.map(function(item,index){
 			i++;
 			return(<div key={index}>
-					<input placeholder={i}/>
-					<input placeholder={item.origin} onChange={this.change.bind(this)}/>
-					<input placeholder={item.dest} onChange={this.change.bind(this)}/>
+					<input id={"stop-"+i} placeholder={i}/>
+					<input className="origin" id={"origin-"+i} ref={origin => this.origin = origin} value={item.origin} onChange={(evt)=>this.change(index,evt)}/>
+					<input className="dest" id={"dest-"+i} ref={dest => this.dest = dest} value={item.dest} onChange={(evt)=>this.change(index,evt)}/>
 					</div>
 			);
 		}.bind(this))

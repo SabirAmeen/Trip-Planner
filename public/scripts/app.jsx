@@ -8,9 +8,7 @@ class App extends React.Component {
 constructor(props){
 	super(props);
 	this.state = {
-		from:"TVM",
-		to:"Manali",
-		stops:"1",
+		stops:1,
 		loc:[	
 		]
 	}
@@ -36,19 +34,28 @@ input(arr){
 		}
 	}
 	this.setState({
-		from:arr[0],
-		to:arr[1],
 		stops:arr[2],
 		loc:loc
 	})
 }
-
+handleChange(row,place,type){
+	var arr = this.state.loc;
+	if(type=="origin"){
+		arr[row].origin=place;
+		arr[row-1].dest=place;
+	}
+	else{
+		arr[row].dest=place;
+		arr[row+1].origin=place;
+	}
+	this.setState({loc:arr}) 
+}
 
 	render() {
 		return(
 			<div className="trip_input">
 					<TripInput input={this.input.bind(this)}/>
-					<ListWrapper data={this.state}/>
+					<ListWrapper data={this.state} handleChange={this.handleChange.bind(this)}/>
 			</div>
 		
 			)

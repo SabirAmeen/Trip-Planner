@@ -81,9 +81,7 @@
 			var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
 			_this.state = {
-				from: "TVM",
-				to: "Manali",
-				stops: "1",
+				stops: 1,
 				loc: []
 			};
 			return _this;
@@ -109,11 +107,22 @@
 					}
 				}
 				this.setState({
-					from: arr[0],
-					to: arr[1],
 					stops: arr[2],
 					loc: loc
 				});
+			}
+		}, {
+			key: 'handleChange',
+			value: function handleChange(row, place, type) {
+				var arr = this.state.loc;
+				if (type == "origin") {
+					arr[row].origin = place;
+					arr[row - 1].dest = place;
+				} else {
+					arr[row].dest = place;
+					arr[row + 1].origin = place;
+				}
+				this.setState({ loc: arr });
 			}
 		}, {
 			key: 'render',
@@ -122,7 +131,7 @@
 					'div',
 					{ className: 'trip_input' },
 					_react2.default.createElement(_tripInput2.default, { input: this.input.bind(this) }),
-					_react2.default.createElement(_list_wrapper2.default, { data: this.state })
+					_react2.default.createElement(_list_wrapper2.default, { data: this.state, handleChange: this.handleChange.bind(this) })
 				);
 			}
 		}]);
@@ -21676,8 +21685,11 @@
 
 		_createClass(_class, [{
 			key: 'change',
-			value: function change(event) {
-				console.log(this);
+			value: function change(row, evt) {
+				this.props.handleChange(row, evt.target.value, evt.target.className);
+				// console.log(++row)
+				// console.log(evt.target.value)
+				// console.log(evt.target.className)
 			}
 		}, {
 			key: 'generateLayout',
@@ -21685,13 +21697,23 @@
 				var arr = this.props.data.loc;
 				var i = 0;
 				return arr.map(function (item, index) {
+					var _this2 = this;
+
 					i++;
 					return _react2.default.createElement(
 						'div',
 						{ key: index },
-						_react2.default.createElement('input', { placeholder: i }),
-						_react2.default.createElement('input', { placeholder: item.origin, onChange: this.change.bind(this) }),
-						_react2.default.createElement('input', { placeholder: item.dest, onChange: this.change.bind(this) })
+						_react2.default.createElement('input', { id: "stop-" + i, placeholder: i }),
+						_react2.default.createElement('input', { className: 'origin', id: "origin-" + i, ref: function ref(origin) {
+								return _this2.origin = origin;
+							}, value: item.origin, onChange: function onChange(evt) {
+								return _this2.change(index, evt);
+							} }),
+						_react2.default.createElement('input', { className: 'dest', id: "dest-" + i, ref: function ref(dest) {
+								return _this2.dest = dest;
+							}, value: item.dest, onChange: function onChange(evt) {
+								return _this2.change(index, evt);
+							} })
 					);
 				}.bind(this));
 			}
