@@ -21733,6 +21733,20 @@
 								}, value: item.dest, onChange: function onChange(evt) {
 									return _this2.change(index, evt);
 								} })
+						),
+						_react2.default.createElement(
+							'td',
+							{ className: 'buttons' },
+							_react2.default.createElement(
+								'button',
+								{ className: 'add_remove_stop add_stop' },
+								'+'
+							),
+							_react2.default.createElement(
+								'button',
+								{ className: 'add_remove_stop remove_stop' },
+								'-'
+							)
 						)
 					);
 				}.bind(this));
@@ -21744,7 +21758,7 @@
 					'table',
 					{ className: 'list_wrapper' },
 					_react2.default.createElement(
-						'tbody',
+						'thead',
 						null,
 						_react2.default.createElement(
 							'tr',
@@ -21763,8 +21777,17 @@
 								'th',
 								{ className: 'heading' },
 								'To'
+							),
+							_react2.default.createElement(
+								'th',
+								{ className: 'heading' },
+								'Add/ Remove '
 							)
-						),
+						)
+					),
+					_react2.default.createElement(
+						'tbody',
+						null,
 						this.generateLayout()
 					)
 				);
