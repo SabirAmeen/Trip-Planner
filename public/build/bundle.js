@@ -115,20 +115,28 @@
 			key: 'handleChange',
 			value: function handleChange(row, place, type) {
 				var arr = this.state.loc;
+				var temp;
 				var stops = this.state.stops;
 				if (type == "origin") {
 					arr[row].origin = place;
 					if (row - 1 >= 0) {
 						arr[row - 1].dest = place;
+						if (arr[row].origin === "") {
+							temp = arr[row].dest;
+							arr[row - 1].dest = temp;
+							arr.splice(row, 1);
+						}
 					}
 				} else {
 					arr[row].dest = place;
 					if (row + 1 != stops) {
 						arr[row + 1].origin = place;
+						if (arr[row].dest === "") {
+							temp = arr[row + 1].dest;
+							arr[row].dest = temp;
+							arr.splice(row + 1, 1);
+						}
 					}
-				}
-				if (arr[row].origin === "" && arr[row].dest === "") {
-					arr.splice(row, 1);
 				}
 				this.setState({ loc: arr });
 			}
@@ -21730,36 +21738,35 @@
 				}.bind(this));
 			}
 		}, {
-			key: 'onChange',
-			value: function onChange() {
-				this.setState();
-			}
-		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
 					'table',
 					{ className: 'list_wrapper' },
 					_react2.default.createElement(
-						'tr',
-						{ className: 'section_heading' },
+						'tbody',
+						null,
 						_react2.default.createElement(
-							'th',
-							{ className: 'heading' },
-							'Stops'
+							'tr',
+							{ className: 'section_heading' },
+							_react2.default.createElement(
+								'th',
+								{ className: 'heading' },
+								'Stops'
+							),
+							_react2.default.createElement(
+								'th',
+								{ className: 'heading' },
+								'From'
+							),
+							_react2.default.createElement(
+								'th',
+								{ className: 'heading' },
+								'To'
+							)
 						),
-						_react2.default.createElement(
-							'th',
-							{ className: 'heading' },
-							'From'
-						),
-						_react2.default.createElement(
-							'th',
-							{ className: 'heading' },
-							'To'
-						)
-					),
-					this.generateLayout()
+						this.generateLayout()
+					)
 				);
 			}
 		}]);

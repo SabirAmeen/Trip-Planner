@@ -23,19 +23,18 @@ generateLayout(){
 		}.bind(this))
 	)
 }
-onChange() {
-	this.setState()
-}
 
 render(){
 	return(
 			<table className="list_wrapper">
+			<tbody>
 				<tr className="section_heading">
 					<th className="heading">Stops</th>
 					<th className="heading">From</th>
 					<th className="heading">To</th>
 				</tr>
 				{this.generateLayout()}
+			</tbody>
 			</table>
 		)
 	}

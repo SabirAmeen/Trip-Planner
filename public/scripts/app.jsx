@@ -41,22 +41,29 @@ input(arr){
 }
 handleChange(row,place,type){
 	var arr = this.state.loc;
+	var temp;
 	var stops=this.state.stops
 	if(type=="origin"){
 		arr[row].origin=place;
 		if(row-1>=0){
-			arr[row-1].dest=place;			
+			arr[row-1].dest=place;
+			if(arr[row].origin===""){
+				temp=arr[row].dest;
+				arr[row-1].dest=temp;
+				arr.splice(row,1);
+			}			
 		}
-
 	}
 	else{
 		arr[row].dest=place;
 		if(row+1!=stops){
 			arr[row+1].origin=place;
+			if(arr[row].dest===""){
+				temp=arr[row+1].dest;
+				arr[row].dest=temp;
+				arr.splice(row+1,1);
+			}
 		}
-	}
-	if(arr[row].origin==="" && arr[row].dest===""){
-		arr.splice(row,1);
 	}
 	this.setState({loc:arr}) 
 }
