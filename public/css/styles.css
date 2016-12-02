@@ -28,6 +28,11 @@ h1{
 h2{
 	color: #485494;
 }
+h6{
+	color: #fff;
+	font-family: 'Merienda', cursive;
+	text-align: center;
+}
 table{
 	border-collapse: collapse;
 }
@@ -43,7 +48,7 @@ tr{
 .trip_planner{
 	width: 80%;
 	max-width: 500px;
-	margin: 100px auto;
+	margin: 70px auto;
 	padding: 20px;
 	position: relative;
 	background-color: #fff;
@@ -183,7 +188,5 @@ tr{
 footer{
 background-color: #000;
 height: 40px;
-}
-@media (min-width: ) {
-	
+padding: 10px;
 }
