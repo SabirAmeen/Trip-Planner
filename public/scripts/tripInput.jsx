@@ -21,6 +21,7 @@ export default class TripInput extends React.Component {
 		return (
 
 			<div className="trip_input">
+
 				<h2>Plan Your Journey </h2>
 				
 				<input className="from" type="text" name="from" ref={from => this.from = from} placeholder="From" />
