@@ -87,6 +87,21 @@ removeRow(row){
 	render() {
 		return(
 			<div className="trip_planner">
+					<div className="container">
+						  <div className="hole">
+						 	 	<div className="box"></div>
+							</div>
+							<div className="hole">
+						 		 <div className="box"></div>
+							</div>
+							<div className="hole">
+						  		<div className="box"></div>
+							</div>
+							<div className="hole">
+						  		<div className="box"></div>
+							</div>
+							<div className="hole"><div className="box"></div></div>
+					</div>
 					<TripInput data={this.state} input={this.input.bind(this)}/>
 					<ListWrapper data={this.state} handleChange={this.handleChange.bind(this)} addRow={this.addRow.bind(this)} removeRow={this.removeRow.bind(this)}/>
 			</div>

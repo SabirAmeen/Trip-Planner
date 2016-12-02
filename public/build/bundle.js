@@ -165,6 +165,35 @@
 				return _react2.default.createElement(
 					'div',
 					{ className: 'trip_planner' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'container' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'hole' },
+							_react2.default.createElement('div', { className: 'box' })
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'hole' },
+							_react2.default.createElement('div', { className: 'box' })
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'hole' },
+							_react2.default.createElement('div', { className: 'box' })
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'hole' },
+							_react2.default.createElement('div', { className: 'box' })
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'hole' },
+							_react2.default.createElement('div', { className: 'box' })
+						)
+					),
 					_react2.default.createElement(_tripInput2.default, { data: this.state, input: this.input.bind(this) }),
 					_react2.default.createElement(_list_wrapper2.default, { data: this.state, handleChange: this.handleChange.bind(this), addRow: this.addRow.bind(this), removeRow: this.removeRow.bind(this) })
 				);
@@ -21615,11 +21644,6 @@
 		function TripInput(props) {
 			_classCallCheck(this, TripInput);
 
-			// if(this.props.data.loc){
-			// 	this.origin=this.props.data.loc[0].origin;
-			// 	this.dest=this.props.data.loc.last().origin;
-			// 	this.interim=this.props.data.stops
-			// }
 			var _this = _possibleConstructorReturn(this, (TripInput.__proto__ || Object.getPrototypeOf(TripInput)).call(this, props));
 
 			_this.from = undefined;
@@ -21640,6 +21664,14 @@
 			value: function render() {
 				var _this2 = this;
 
+				if (this.props.data.loc[0] != undefined) {
+					this.from.value = "";
+					this.to.value = "";
+					this.stop.value = "";
+					this.from.placeholder = this.props.data.loc[0].origin;
+					this.stop.placeholder = this.props.data.stops;
+					this.to.placeholder = this.props.data.loc[this.stop.placeholder - 1].dest;
+				}
 				return _react2.default.createElement(
 					"div",
 					{ className: "trip_input" },
