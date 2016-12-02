@@ -115,20 +115,49 @@
 			key: 'handleChange',
 			value: function handleChange(row, place, type) {
 				var arr = this.state.loc;
+				var temp;
 				var stops = this.state.stops;
 				if (type == "origin") {
 					arr[row].origin = place;
 					if (row - 1 >= 0) {
 						arr[row - 1].dest = place;
+						if (arr[row].origin === "") {
+							temp = arr[row].dest;
+							arr[row - 1].dest = temp;
+							arr.splice(row, 1);
+						}
 					}
 				} else {
 					arr[row].dest = place;
 					if (row + 1 != stops) {
 						arr[row + 1].origin = place;
+						if (arr[row].dest === "") {
+							temp = arr[row + 1].dest;
+							arr[row].dest = temp;
+							arr.splice(row + 1, 1);
+						}
 					}
 				}
-				if (arr[row].origin === "" && arr[row].dest === "") {
-					arr.splice(row, 1);
+				this.setState({ loc: arr });
+			}
+		}, {
+			key: 'addRow',
+			value: function addRow(row) {
+				var arr = this.state.loc;
+				var temp = arr[row].dest;
+				arr[row].dest = "";
+				arr.splice(row + 1, 0, { origin: "", dest: temp });
+				console.log(arr);
+				this.setState({ loc: arr });
+			}
+		}, {
+			key: 'removeRow',
+			value: function removeRow(row) {
+				var arr = this.state.loc;
+				var temp = arr[row].dest;
+				arr.splice(row, 1);
+				if (row != 0) {
+					arr[row - 1].dest = temp;
 				}
 				this.setState({ loc: arr });
 			}
@@ -139,7 +168,7 @@
 					'div',
 					{ className: 'trip_planner' },
 					_react2.default.createElement(_tripInput2.default, { input: this.input.bind(this) }),
-					_react2.default.createElement(_list_wrapper2.default, { data: this.state, handleChange: this.handleChange.bind(this) })
+					_react2.default.createElement(_list_wrapper2.default, { data: this.state, handleChange: this.handleChange.bind(this), addRow: this.addRow.bind(this), removeRow: this.removeRow.bind(this) })
 				);
 			}
 		}]);
@@ -21687,6 +21716,16 @@
 				this.props.handleChange(row, evt.target.value, evt.target.className);
 			}
 		}, {
+			key: 'addItem',
+			value: function addItem(row) {
+				this.props.addRow(row);
+			}
+		}, {
+			key: 'removeItem',
+			value: function removeItem(row) {
+				this.props.removeRow(row);
+			}
+		}, {
 			key: 'generateLayout',
 			value: function generateLayout() {
 				var arr = this.props.data.loc;
@@ -21731,22 +21770,21 @@
 							{ className: 'buttons' },
 							_react2.default.createElement(
 								'button',
-								{ className: 'add_remove_stop add_stop' },
+								{ className: 'add_remove_stop add_stop', onClick: function onClick() {
+										return _this2.addItem(index);
+									} },
 								'+'
 							),
 							_react2.default.createElement(
 								'button',
-								{ className: 'add_remove_stop remove_stop' },
+								{ className: 'add_remove_stop remove_stop', onClick: function onClick() {
+										return _this2.removeItem(index);
+									} },
 								'-'
 							)
 						)
 					);
 				}.bind(this));
-			}
-		}, {
-			key: 'onChange',
-			value: function onChange() {
-				this.setState();
 			}
 		}, {
 			key: 'render',

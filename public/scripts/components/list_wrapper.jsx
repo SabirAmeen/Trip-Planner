@@ -7,6 +7,14 @@ change(row,evt){
 	this.props.handleChange(row,evt.target.value,evt.target.className);
 }
 
+addItem(row){
+	this.props.addRow(row);
+}
+
+removeItem(row){
+	this.props.removeRow(row);
+}
+
 generateLayout(){
 	var arr=this.props.data.loc;
 	var i=0;
@@ -18,14 +26,11 @@ generateLayout(){
 					<td><span id={"stop-"+i} >{i}</span></td>
 					<td><input className="origin" id={"origin-"+i} ref={origin => this.origin = origin} value={item.origin} onChange={(evt)=>this.change(index,evt)}/></td>
 					<td><input className="dest" id={"dest-"+i} ref={dest => this.dest = dest} value={item.dest} onChange={(evt)=>this.change(index,evt)}/></td>
-					<td className="buttons"><button className="add_remove_stop add_stop">+</button><button className="add_remove_stop remove_stop">-</button></td>
+					<td className="buttons"><button className="add_remove_stop add_stop" onClick={()=>this.addItem(index)}>+</button><button className="add_remove_stop remove_stop" onClick={()=>this.removeItem(index)}>-</button></td>
 					</tr>
 			);
 		}.bind(this))
 	)
-}
-onChange() {
-	this.setState()
 }
 
 render(){
