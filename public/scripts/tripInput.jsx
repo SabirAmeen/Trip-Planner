@@ -9,8 +9,13 @@ export default class TripInput extends React.Component {
 	}
 	enter(){
 		var list=[];
-		list.push(this.from.value,this.to.value,this.stop.value);
-		this.props.input(list);
+		if(this.from.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/) && this.to.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)){
+			list.push(this.from.value,this.to.value,this.stop.value);
+			this.props.input(list);
+		}
+		else{
+			alert("Enter correct locations");
+		}
 	}
 	render() {
 		if(this.props.data.loc[0]!=undefined){

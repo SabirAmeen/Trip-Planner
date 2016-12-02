@@ -150,8 +150,7 @@
 				if (row != stops - 1) {
 					temp = arr[row].origin;
 					arr[row + 1].origin = temp;
-				} else {
-					console.log("hi");
+				} else if (row == 0) {} else {
 					temp = arr[row].dest;
 					arr[row - 1].dest = temp;
 				}
@@ -21627,8 +21626,12 @@
 			key: "enter",
 			value: function enter() {
 				var list = [];
-				list.push(this.from.value, this.to.value, this.stop.value);
-				this.props.input(list);
+				if (this.from.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/) && this.to.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)) {
+					list.push(this.from.value, this.to.value, this.stop.value);
+					this.props.input(list);
+				} else {
+					alert("Enter correct locations");
+				}
 			}
 		}, {
 			key: "render",
@@ -21719,7 +21722,11 @@
 		_createClass(_class, [{
 			key: 'change',
 			value: function change(row, evt) {
-				this.props.handleChange(row, evt.target.value, evt.target.className);
+				if (evt.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/) || evt.target.value == "") {
+					this.props.handleChange(row, evt.target.value, evt.target.className);
+				} else {
+					alert("Enter correct locations");
+				}
 			}
 		}, {
 			key: 'addItem',

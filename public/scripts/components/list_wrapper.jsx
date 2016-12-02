@@ -4,7 +4,12 @@ import ListContent from './list_content.jsx';
 export default class extends React.Component{
 
 change(row,evt){
-	this.props.handleChange(row,evt.target.value,evt.target.className);
+	if(evt.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/) || evt.target.value==""){
+		this.props.handleChange(row,evt.target.value,evt.target.className);
+	}
+	else{
+		alert("Enter correct locations");
+	}
 }
 
 addItem(row){
