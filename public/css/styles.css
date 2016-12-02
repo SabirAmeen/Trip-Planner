@@ -57,6 +57,8 @@ tr{
 }
 .container{
   position: relative;
+  text-align: center;
+  
 }
 .hole{
   background-color: #dee1e5 ;
