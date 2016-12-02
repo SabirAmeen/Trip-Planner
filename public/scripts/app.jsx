@@ -74,8 +74,10 @@ removeRow(row){
 		temp= arr[row].origin;
 		arr[row+1].origin=temp;
 	}
+	else if(row==0){
+		
+	}
 	else{
-		console.log("hi")
 		temp=arr[row].dest;
 		arr[row-1].dest=temp;
 	}
