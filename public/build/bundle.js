@@ -21689,23 +21689,35 @@
 					i++;
 
 					return _react2.default.createElement(
-						'div',
+						'tr',
 						{ key: index, className: 'list_item' },
 						_react2.default.createElement(
-							'span',
-							{ id: "stop-" + i },
-							i
+							'td',
+							null,
+							_react2.default.createElement(
+								'span',
+								{ id: "stop-" + i },
+								i
+							)
 						),
-						_react2.default.createElement('input', { className: 'origin', id: "origin-" + i, ref: function ref(origin) {
-								return _this2.origin = origin;
-							}, value: item.origin, onChange: function onChange(evt) {
-								return _this2.change(index, evt);
-							} }),
-						_react2.default.createElement('input', { className: 'dest', id: "dest-" + i, ref: function ref(dest) {
-								return _this2.dest = dest;
-							}, value: item.dest, onChange: function onChange(evt) {
-								return _this2.change(index, evt);
-							} })
+						_react2.default.createElement(
+							'td',
+							null,
+							_react2.default.createElement('input', { className: 'origin', id: "origin-" + i, ref: function ref(origin) {
+									return _this2.origin = origin;
+								}, value: item.origin, onChange: function onChange(evt) {
+									return _this2.change(index, evt);
+								} })
+						),
+						_react2.default.createElement(
+							'td',
+							null,
+							_react2.default.createElement('input', { className: 'dest', id: "dest-" + i, ref: function ref(dest) {
+									return _this2.dest = dest;
+								}, value: item.dest, onChange: function onChange(evt) {
+									return _this2.change(index, evt);
+								} })
+						)
 					);
 				}.bind(this));
 			}
@@ -21718,23 +21730,23 @@
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
-					'div',
+					'table',
 					{ className: 'list_wrapper' },
 					_react2.default.createElement(
-						'div',
+						'tr',
 						{ className: 'section_heading' },
 						_react2.default.createElement(
-							'span',
+							'th',
 							{ className: 'heading' },
 							'Stops'
 						),
 						_react2.default.createElement(
-							'span',
+							'th',
 							{ className: 'heading' },
 							'From'
 						),
 						_react2.default.createElement(
-							'span',
+							'th',
 							{ className: 'heading' },
 							'To'
 						)
