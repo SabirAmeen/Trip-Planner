@@ -21725,6 +21725,20 @@
 								}, value: item.dest, onChange: function onChange(evt) {
 									return _this2.change(index, evt);
 								} })
+						),
+						_react2.default.createElement(
+							'td',
+							{ className: 'buttons' },
+							_react2.default.createElement(
+								'button',
+								{ className: 'add_remove_stop add_stop' },
+								'+'
+							),
+							_react2.default.createElement(
+								'button',
+								{ className: 'add_remove_stop remove_stop' },
+								'-'
+							)
 						)
 					);
 				}.bind(this));
@@ -21741,25 +21755,38 @@
 					'table',
 					{ className: 'list_wrapper' },
 					_react2.default.createElement(
-						'tr',
-						{ className: 'section_heading' },
+						'thead',
+						null,
 						_react2.default.createElement(
-							'th',
-							{ className: 'heading' },
-							'Stops'
-						),
-						_react2.default.createElement(
-							'th',
-							{ className: 'heading' },
-							'From'
-						),
-						_react2.default.createElement(
-							'th',
-							{ className: 'heading' },
-							'To'
+							'tr',
+							{ className: 'section_heading' },
+							_react2.default.createElement(
+								'th',
+								{ className: 'heading' },
+								'Stops'
+							),
+							_react2.default.createElement(
+								'th',
+								{ className: 'heading' },
+								'From'
+							),
+							_react2.default.createElement(
+								'th',
+								{ className: 'heading' },
+								'To'
+							),
+							_react2.default.createElement(
+								'th',
+								{ className: 'heading' },
+								'Add/ Remove '
+							)
 						)
 					),
-					this.generateLayout()
+					_react2.default.createElement(
+						'tbody',
+						null,
+						this.generateLayout()
+					)
 				);
 			}
 		}]);
