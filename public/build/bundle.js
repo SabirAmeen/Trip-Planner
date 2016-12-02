@@ -21616,13 +21616,13 @@
 						null,
 						"Plan Your Journey "
 					),
-					_react2.default.createElement("input", { type: "text", name: "from", ref: function ref(from) {
+					_react2.default.createElement("input", { className: "from", type: "text", name: "from", ref: function ref(from) {
 							return _this2.from = from;
 						}, placeholder: "From" }),
-					_react2.default.createElement("input", { type: "text", name: "to", ref: function ref(to) {
+					_react2.default.createElement("input", { className: "to", type: "text", name: "to", ref: function ref(to) {
 							return _this2.to = to;
 						}, placeholder: "To" }),
-					_react2.default.createElement("input", { type: "text", name: "stop", ref: function ref(stop) {
+					_react2.default.createElement("input", { className: "stop", type: "text", name: "stop", ref: function ref(stop) {
 							return _this2.stop = stop;
 						}, placeholder: "Stops" }),
 					_react2.default.createElement(
