@@ -3,6 +3,11 @@ import React from 'react';
 export default class TripInput extends React.Component {
 	constructor(props){
 		super(props);
+		// if(this.props.data.loc){
+		// 	this.origin=this.props.data.loc[0].origin;
+		// 	this.dest=this.props.data.loc.last().origin;
+		// 	this.interim=this.props.data.stops
+		// }
 		this.from=undefined;
 		this.to=undefined;
 		this.stop=undefined;

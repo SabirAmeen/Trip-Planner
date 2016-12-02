@@ -63,15 +63,22 @@ addRow(row){
 	var temp = arr[row].dest;
 	arr[row].dest="";
 	arr.splice(row+1,0,{origin:"",dest:temp});
-	console.log(arr);
 	stops++;
 	this.setState({stops:stops,loc:arr})
 }
 removeRow(row){
 	var arr = this.state.loc;
 	var stops = this.state.stops;
-	var temp = arr[row].origin;
-	arr[row+1].origin=temp;
+	var temp;
+	if(row!=stops-1){
+		temp= arr[row].origin;
+		arr[row+1].origin=temp;
+	}
+	else{
+		console.log("hi")
+		temp=arr[row].dest;
+		arr[row-1].dest=temp;
+	}
 	arr.splice(row,1);
 	stops--;
 	this.setState({stops:stops, loc:arr})
