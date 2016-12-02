@@ -40,13 +40,22 @@ input(arr){
 }
 handleChange(row,place,type){
 	var arr = this.state.loc;
+	var stops=this.state.stops
 	if(type=="origin"){
 		arr[row].origin=place;
-		arr[row-1].dest=place;
+		if(row-1>=0){
+			arr[row-1].dest=place;			
+		}
+
 	}
 	else{
 		arr[row].dest=place;
-		arr[row+1].origin=place;
+		if(row+1!=stops){
+			arr[row+1].origin=place;
+		}
+	}
+	if(arr[row].origin==="" && arr[row].dest===""){
+		arr.splice(row,1);
 	}
 	this.setState({loc:arr}) 
 }
