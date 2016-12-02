@@ -67,12 +67,29 @@ handleChange(row,place,type){
 	}
 	this.setState({loc:arr}) 
 }
+addRow(row){
+	var arr = this.state.loc;
+	var temp = arr[row].dest;
+	arr[row].dest="";
+	arr.splice(row+1,0,{origin:"",dest:temp});
+	console.log(arr);
+	this.setState({loc:arr})
+}
+removeRow(row){
+	var arr = this.state.loc;
+	var temp = arr[row].dest;
+	arr.splice(row,1);
+	if(row!=0){
+		arr[row-1].dest=temp;
+	}
+	this.setState({loc:arr})
 
+}
 	render() {
 		return(
 			<div className="trip_planner">
 					<TripInput input={this.input.bind(this)}/>
-					<ListWrapper data={this.state} handleChange={this.handleChange.bind(this)}/>
+					<ListWrapper data={this.state} handleChange={this.handleChange.bind(this)} addRow={this.addRow.bind(this)} removeRow={this.removeRow.bind(this)}/>
 			</div>
 
 			)
