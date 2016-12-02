@@ -21737,6 +21737,20 @@
 								'span',
 								{ id: "stop-" + i },
 								i
+							),
+							_react2.default.createElement(
+								'button',
+								{ className: 'add_remove_stop add_stop', onClick: function onClick() {
+										return _this2.addItem(index);
+									} },
+								'+'
+							),
+							_react2.default.createElement(
+								'button',
+								{ className: 'add_remove_stop remove_stop', onClick: function onClick() {
+										return _this2.removeItem(index);
+									} },
+								'-'
 							)
 						),
 						_react2.default.createElement(
@@ -21756,24 +21770,6 @@
 								}, value: item.dest, onChange: function onChange(evt) {
 									return _this2.change(index, evt);
 								} })
-						),
-						_react2.default.createElement(
-							'td',
-							{ className: 'buttons' },
-							_react2.default.createElement(
-								'button',
-								{ className: 'add_remove_stop add_stop', onClick: function onClick() {
-										return _this2.addItem(index);
-									} },
-								'+'
-							),
-							_react2.default.createElement(
-								'button',
-								{ className: 'add_remove_stop remove_stop', onClick: function onClick() {
-										return _this2.removeItem(index);
-									} },
-								'-'
-							)
 						)
 					);
 				}.bind(this));
@@ -21804,11 +21800,6 @@
 								'th',
 								{ className: 'heading' },
 								'To'
-							),
-							_react2.default.createElement(
-								'th',
-								{ className: 'heading' },
-								'Add/ Remove '
 							)
 						)
 					),

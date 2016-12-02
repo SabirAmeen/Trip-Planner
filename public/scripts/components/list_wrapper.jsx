@@ -23,10 +23,9 @@ generateLayout(){
 			i++;
 
 			return(<tr key={index} className="list_item">
-					<td><span id={"stop-"+i} >{i}</span></td>
+					<td><span id={"stop-"+i} >{i}</span><button className="add_remove_stop add_stop" onClick={()=>this.addItem(index)}>+</button><button className="add_remove_stop remove_stop" onClick={()=>this.removeItem(index)}>-</button></td>
 					<td><input className="origin" id={"origin-"+i} ref={origin => this.origin = origin} value={item.origin} onChange={(evt)=>this.change(index,evt)}/></td>
 					<td><input className="dest" id={"dest-"+i} ref={dest => this.dest = dest} value={item.dest} onChange={(evt)=>this.change(index,evt)}/></td>
-					<td className="buttons"><button className="add_remove_stop add_stop" onClick={()=>this.addItem(index)}>+</button><button className="add_remove_stop remove_stop" onClick={()=>this.removeItem(index)}>-</button></td>
 					</tr>
 			);
 		}.bind(this))
@@ -41,7 +40,6 @@ render(){
 					<th className="heading">Stops</th>
 					<th className="heading">From</th>
 					<th className="heading">To</th>
-					<th className="heading">Add/ Remove </th>
 				</tr>
 				</thead>
 				<tbody>
