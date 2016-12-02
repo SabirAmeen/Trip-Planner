@@ -138,7 +138,6 @@
 				var temp = arr[row].dest;
 				arr[row].dest = "";
 				arr.splice(row + 1, 0, { origin: "", dest: temp });
-				console.log(arr);
 				stops++;
 				this.setState({ stops: stops, loc: arr });
 			}
@@ -147,8 +146,15 @@
 			value: function removeRow(row) {
 				var arr = this.state.loc;
 				var stops = this.state.stops;
-				var temp = arr[row].origin;
-				arr[row + 1].origin = temp;
+				var temp;
+				if (row != stops - 1) {
+					temp = arr[row].origin;
+					arr[row + 1].origin = temp;
+				} else {
+					console.log("hi");
+					temp = arr[row].dest;
+					arr[row - 1].dest = temp;
+				}
 				arr.splice(row, 1);
 				stops--;
 				this.setState({ stops: stops, loc: arr });
@@ -21609,6 +21615,11 @@
 		function TripInput(props) {
 			_classCallCheck(this, TripInput);
 
+			// if(this.props.data.loc){
+			// 	this.origin=this.props.data.loc[0].origin;
+			// 	this.dest=this.props.data.loc.last().origin;
+			// 	this.interim=this.props.data.stops
+			// }
 			var _this = _possibleConstructorReturn(this, (TripInput.__proto__ || Object.getPrototypeOf(TripInput)).call(this, props));
 
 			_this.from = undefined;
