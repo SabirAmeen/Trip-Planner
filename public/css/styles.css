@@ -42,6 +42,7 @@ tr{
 }
 .trip_planner{
 	width: 80%;
+	max-width: 500px;
 	margin: 100px auto;
 	padding: 20px;
 	position: relative;
@@ -58,7 +59,7 @@ tr{
 .container{
   position: relative;
   text-align: center;
-  
+
 }
 .hole{
   background-color: #dee1e5 ;
@@ -72,13 +73,13 @@ tr{
 }
 .box{
   width:50px; 
-  height:50px;   
+  height:44px;   
   border:solid 8px #000;
   border-color:#000 transparent transparent #000;
   position: absolute;
   top: -30px;
   left: 5px; 
-  border-radius: 60% 30% 10px;
+      border-radius: 60% 36% 39px;
 }
 
 .trip_input{
