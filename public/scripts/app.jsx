@@ -20,8 +20,8 @@ input(arr){
 	this.setState({loc:[]});
 	var stopCount = arr[2];
 	var loc=[];
-	for(var i=0;i < stopCount;i++){
-		if(i==0){
+	for(var index=0;index < stopCount;index++){
+		if(index==0){
 			if(stopCount==1){
 				loc.push({origin:arr[0], dest:arr[1]})
 			}
@@ -29,7 +29,7 @@ input(arr){
 				loc.push({origin:arr[0], dest:""})		
 			}
 		}
-		else if(i==stopCount-1){
+		else if(index==stopCount-1){
 			loc.push({origin:"", dest:arr[1]})
 		}
 		else{

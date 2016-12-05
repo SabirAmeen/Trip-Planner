@@ -1,6 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-import ListContent from './list_content.jsx';
 export default class extends React.Component{
 
 change(row,evt){
@@ -11,15 +10,6 @@ change(row,evt){
 		alert("Enter correct locations");
 	}
 }
-
-addItem(row){
-	this.props.addRow(row);
-}
-
-removeItem(row){
-	this.props.removeRow(row);
-}
-
 generateLayout(){
 	var arr=this.props.data.loc;
 	var i=0;
@@ -28,7 +18,7 @@ generateLayout(){
 			i++;
 
 			return(<tr key={index} className="list_item">
-					<td><span id={"stop-"+i} >{i}</span><button className="add_remove_stop add_stop" onClick={()=>this.addItem(index)}>+</button><button className="add_remove_stop remove_stop" onClick={()=>this.removeItem(index)}>-</button></td>
+					<td><span id={"stop-"+i} >{i}</span><button className="add_remove_stop add_stop" onClick={()=>this.props.addRow(index)}>+</button><button className="add_remove_stop remove_stop" onClick={()=>this.props.removeRow(index)}>-</button></td>
 					<td><input className="origin" id={"origin-"+i} ref={origin => this.origin = origin} value={item.origin} onChange={(evt)=>this.change(index,evt)}/></td>
 					<td><input className="dest" id={"dest-"+i} ref={dest => this.dest = dest} value={item.dest} onChange={(evt)=>this.change(index,evt)}/></td>
 					</tr>
