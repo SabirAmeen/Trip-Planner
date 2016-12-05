@@ -5,6 +5,8 @@ import TripInput from './tripInput.jsx';
 
 import ListWrapper from './components/list_wrapper.jsx';
 
+import Spiral from './components/spiral.jsx';
+
 class App extends React.Component {
 constructor(props){
 	super(props);
@@ -89,21 +91,7 @@ removeRow(row){
 	render() {
 		return(
 			<div className="trip_planner">
-					<div className="container">
-						  <div className="hole">
-						 	 	<div className="box"></div>
-							</div>
-							<div className="hole">
-						 		 <div className="box"></div>
-							</div>
-							<div className="hole">
-						  		<div className="box"></div>
-							</div>
-							<div className="hole">
-						  		<div className="box"></div>
-							</div>
-							<div className="hole"><div className="box"></div></div>
-					</div>
+					<Spiral />
 					<TripInput data={this.state} input={this.input.bind(this)}/>
 					<ListWrapper data={this.state} handleChange={this.handleChange.bind(this)} addRow={this.addRow.bind(this)} removeRow={this.removeRow.bind(this)}/>
 			</div>
