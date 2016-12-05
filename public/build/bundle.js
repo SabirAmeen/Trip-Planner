@@ -64,7 +64,7 @@
 
 	var _list_wrapper2 = _interopRequireDefault(_list_wrapper);
 
-	var _spiral = __webpack_require__(182);
+	var _spiral = __webpack_require__(181);
 
 	var _spiral2 = _interopRequireDefault(_spiral);
 
@@ -21703,10 +21703,6 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _list_content = __webpack_require__(181);
-
-	var _list_content2 = _interopRequireDefault(_list_content);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21734,16 +21730,6 @@
 				}
 			}
 		}, {
-			key: 'addItem',
-			value: function addItem(row) {
-				this.props.addRow(row);
-			}
-		}, {
-			key: 'removeItem',
-			value: function removeItem(row) {
-				this.props.removeRow(row);
-			}
-		}, {
 			key: 'generateLayout',
 			value: function generateLayout() {
 				var arr = this.props.data.loc;
@@ -21767,14 +21753,14 @@
 							_react2.default.createElement(
 								'button',
 								{ className: 'add_remove_stop add_stop', onClick: function onClick() {
-										return _this2.addItem(index);
+										return _this2.props.addRow(index);
 									} },
 								'+'
 							),
 							_react2.default.createElement(
 								'button',
 								{ className: 'add_remove_stop remove_stop', onClick: function onClick() {
-										return _this2.removeItem(index);
+										return _this2.props.removeRow(index);
 									} },
 								'-'
 							)
@@ -32071,61 +32057,6 @@
 
 /***/ },
 /* 181 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _jquery = __webpack_require__(180);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _class = function (_React$Component) {
-		_inherits(_class, _React$Component);
-
-		function _class() {
-			_classCallCheck(this, _class);
-
-			return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-		}
-
-		_createClass(_class, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement('span', null),
-					_react2.default.createElement('span', null),
-					_react2.default.createElement('span', null)
-				);
-			}
-		}]);
-
-		return _class;
-	}(_react2.default.Component);
-
-	exports.default = _class;
-
-/***/ },
-/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
