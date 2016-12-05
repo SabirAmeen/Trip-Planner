@@ -28,6 +28,11 @@ h1{
 h2{
 	color: #485494;
 }
+h6{
+	color: #fff;
+	font-family: 'Merienda', cursive;
+	text-align: center;
+}
 table{
 	border-collapse: collapse;
 }
@@ -42,7 +47,8 @@ tr{
 }
 .trip_planner{
 	width: 80%;
-	margin: 100px auto;
+	max-width: 500px;
+	margin: 70px auto;
 	padding: 20px;
 	position: relative;
 	background-color: #fff;
@@ -58,7 +64,7 @@ tr{
 .container{
   position: relative;
   text-align: center;
-  
+
 }
 .hole{
   background-color: #dee1e5 ;
@@ -72,13 +78,13 @@ tr{
 }
 .box{
   width:50px; 
-  height:50px;   
+  height:44px;   
   border:solid 8px #000;
   border-color:#000 transparent transparent #000;
   position: absolute;
   top: -30px;
   left: 5px; 
-  border-radius: 60% 30% 10px;
+      border-radius: 60% 36% 39px;
 }
 
 .trip_input{
@@ -182,7 +188,5 @@ tr{
 footer{
 background-color: #000;
 height: 40px;
-}
-@media (min-width: ) {
-	
+padding: 10px;
 }
