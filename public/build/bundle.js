@@ -64,7 +64,7 @@
 
 	var _list_wrapper2 = _interopRequireDefault(_list_wrapper);
 
-	var _spiral = __webpack_require__(181);
+	var _spiral = __webpack_require__(182);
 
 	var _spiral2 = _interopRequireDefault(_spiral);
 
@@ -32056,7 +32056,8 @@
 
 
 /***/ },
-/* 181 */
+/* 181 */,
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
